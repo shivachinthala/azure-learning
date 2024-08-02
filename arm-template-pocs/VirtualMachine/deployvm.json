@@ -1,0 +1,10 @@
+//create a Resource group in your respective subscription using az cli
+$az group create -name arm-template -l EastUS2
+
+//Deploy the ARM template with in above created Resource group i.e. arm-template
+$az deployment group create --resource-group arm-template --template-file deployvm.json
+
+//Once the deployment gets completed then you can login VM using your private ssh key
+//Navigate to the SSH private file path from there try to use the following command to login the VM
+$ssh -i <path-to-the-ssh-privatekey> <VM-AdminUsername>@<VM-PublicIP>
+//e.g. $ssh -i ~/.ssh/id_rsa azureuser@20.13.45.12

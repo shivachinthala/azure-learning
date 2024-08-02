@@ -1,0 +1,5 @@
+//create a Resource group in your respective subscription using az cli
+$az group create -name arm-template -l EastUS2
+
+//Deploy the ARM template with in above created Resource group i.e. arm-template
+$az deployment group create --resource-group arm-template --template-file storageaccount.json

@@ -1,0 +1,51 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "StorageAccountTier": {
+            "type": "string",
+            "metadata": {
+                "description": "Select the storage account tier"
+            },
+            "defaultValue": "Standard",
+            "allowedValues": [
+                "Premium",
+                "Standard"
+            ]
+        },
+        "location": {
+            "type": "string",
+            "metadata": {
+                "description": "Provide the location"
+            },
+            "defaultValue": "EastUS2"
+        }
+    },
+    "functions": [],
+    "variables": {
+        "storagename": "shivastorage4291",
+        "displayname": "storageaccountofshiva"
+    },
+    "resources": [
+        {
+            "name": "[variables('storagename')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2023-04-01",
+            "tags": {
+                "displayName": "[variables('displayname')]"
+            },
+            "location": "[parameters('location')]",
+            "kind": "StorageV2",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "[parameters('StorageAccountTier')]"
+            }
+        }
+    ],
+    "outputs": {
+        "storagetier": {
+            "type": "string",
+            "value": "[parameters('StorageAccountTier')]"
+        }
+    }
+}
